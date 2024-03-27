@@ -14,6 +14,7 @@ class BLASTER_API AHitScanWeapon : public AWeapon
 {
 	GENERATED_BODY()
 public:
+	//没把武器特有的开火功能
 	virtual void Fire(const FVector& HitTarget) override;
 protected:
 

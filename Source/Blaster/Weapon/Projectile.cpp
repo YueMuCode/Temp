@@ -54,6 +54,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	Destroy();
 }
 
+//生成子弹的尾迹
 void AProjectile::SpawnTrailSystem()
 {
 	if (TrailSystem)
@@ -101,6 +102,7 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
+//火箭的尾迹延迟消失
 void AProjectile::StartDestroyTimer()
 {
 	GetWorldTimerManager().SetTimer(

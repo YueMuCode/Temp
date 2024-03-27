@@ -16,6 +16,8 @@ AProjectileRocket::AProjectileRocket()
 	ProjectileMesh->SetupAttachment(RootComponent);
 	ProjectileMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
+	//使用C++代码控制火箭弹的运动功能
+	//目的是防止火箭命中到自身的时候会停止
 	RocketMovementComponent = CreateDefaultSubobject<URocketMovementComponent>(TEXT("RocketMovementComponent"));
 	RocketMovementComponent->bRotationFollowsVelocity = true;
 	RocketMovementComponent->SetIsReplicated(true);
@@ -32,6 +34,7 @@ void AProjectileRocket::BeginPlay()
 
 	SpawnTrailSystem();
 
+	//火箭弹的声音
 	if (ProjectileLoop && LoopingSoundAttenuation)
 	{
 		ProjectileLoopComponent = UGameplayStatics::SpawnSoundAttached(
@@ -53,6 +56,7 @@ void AProjectileRocket::BeginPlay()
 
 void AProjectileRocket::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+	//防止发射火箭弹的时候伤害到自身
 	if (OtherActor == GetOwner())
 	{
 		return;
@@ -90,4 +94,5 @@ void AProjectileRocket::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 void AProjectileRocket::Destroyed()
 {
 
+	
 }

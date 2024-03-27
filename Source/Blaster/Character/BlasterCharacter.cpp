@@ -278,18 +278,7 @@ void ABlasterCharacter::ServerLeaveGame_Implementation()
 	}
 }
 
-void ABlasterCharacter::DropOrDestroyWeapon(AWeapon* Weapon)
-{
-	if (Weapon == nullptr) return;
-	if (Weapon->bDestroyWeapon)
-	{
-		Weapon->Destroy();
-	}
-	else
-	{
-		Weapon->Dropped();
-	}
-}
+
 
 void ABlasterCharacter::DropOrDestroyWeapons()
 {
@@ -309,7 +298,18 @@ void ABlasterCharacter::DropOrDestroyWeapons()
 		}
 	}
 }
-
+void ABlasterCharacter::DropOrDestroyWeapon(AWeapon* Weapon)
+{
+	if (Weapon == nullptr) return;
+	if (Weapon->bDestroyWeapon)
+	{
+		Weapon->Destroy();
+	}
+	else
+	{
+		Weapon->Dropped();
+	}
+}
 void ABlasterCharacter::OnPlayerStateInitialized()
 {
 	BlasterPlayerState->AddToScore(0.f);

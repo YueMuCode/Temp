@@ -365,11 +365,11 @@ void UCombatComponent::AttachActorToRightHand(AActor* ActorToAttach)
 
 	
 	
-	//const USkeletalMeshSocket* HandSocket = Character->GetMesh()->GetSocketByName(FName("RightHandSocket"));
-	//if (HandSocket)
-	//{
-		//HandSocket->AttachActor(ActorToAttach, Character->GetMesh());
-	//}
+	const USkeletalMeshSocket* HandSocket = Character->GetMesh()->GetSocketByName(FName("RightHandSocket"));
+	if (HandSocket)
+	{
+		HandSocket->AttachActor(ActorToAttach, Character->GetMesh());
+	}
 }
 
 void UCombatComponent::AttachFlagToLeftHand(AWeapon* Flag)
